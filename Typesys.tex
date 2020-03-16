@@ -1,17 +1,84 @@
-\documentclass{article}
+\documentclass[runningheads]{llncs}
 \usepackage{amsmath}
-\usepackage{array}
-\usepackage{color}
+\usepackage{array,color,listings}
 \usepackage[T1]{fontenc}
-\usepackage[showframe]{geometry}
+% \usepackage[showframe]{geometry}
 \usepackage{longtable}
-\author{}
-\date{}
 \frenchspacing
 \newcolumntype{L}{>{$}l<{$}}
 \newcommand\kood[1]{\text{\color{red}\texttt{#1}}}
 \newcommand\nurksulud[1]{\langle\text{#1}\rangle}
-\title{}
+
+\lstset{language=haskell,mathescape}
 \begin{document}
-  hello world
+%
+\title{Typeclasses as subkinds}
+%
+\author{Liisi Kerik%\inst{1} 
+\and  Kalmer Apinis
+\and  Härmel Nestra
+}
+%
+\authorrunning{L. Kerik et al.}
+%
+\institute{
+Deptartment of Computer Science, University of Tartu, \\
+Narva mnt 18, EE-51009 Tartu, Estonia \\
+\email{\{liisi.kerik,kalmer.apinis,harmel.nestra\}@ut.ee}}
+%
+\maketitle             
+%
+\begin{abstract}
+\keywords{First keyword  \and Second keyword \and Another keyword.}
+\end{abstract}
+%
+%
+\section{Introduction}
+% Sektsioonid on esialgsed -- hiljem paneme neid kokku jne.
+% Kirjuta minimalistlikult kuid täielikult. Kirjuta nagu geeniusest magistrandile, kes saab kõigest kiiresti aru aga ei tea konkreetsest probleemist midagi.
+\section{Typeclasses}
+%Siia kirjutada sellest, mis on tüübiklassid%
+
+In Haskell 98\cite{jones1999report} you can declare a typeclass and its operators using this general form:
+\begin{lstlisting}
+  class $\textit{cx}$ => C u where $\textit{cdexls}$ 
+\end{lstlisting}
+It creates a typeclass $C$ with a type parameter $u$. The type parameter can be used in the superclass declaration $\textit{cx}$ and method signatures $\textit{cdexls}$. It is not allowed to declare typeclasses that would create cycles in the superclass relation. Class declarations $\textit{cdexls}$ contains method declarations $v_i$ in the form of explicit type signatures
+\begin{lstlisting}
+  $v_i$ :: $\textit{cx}_i$ => $t_i$
+\end{lstlisting}
+In Haskell, class declarations also may contain fixity declarations and default class methods---we omit these for simplicity.
+
+For example, the equality typeclass can be declared as such:
+\begin{lstlisting}
+  class Eq a where eq :: a -> a -> Bool
+\end{lstlisting}
+
+% ...
+% edasi: operaator eq: Eq a => a -> a -> Bool
+% edasi: instantsid
+% edasi: Eq näide 
+% edasi: Eq-d kasutava avaldise näide 
+
+
+\section{Kinds and Subkinds}
+
+% mis on liigid 
+% millele me siin viitame? Vaadata "Giving Haskell a Promotion" viiteid
+% liigi näide: * -> *, kui vaja, mainida et seda on vaja listide andmestruktuuri juures
+% mis on alamliigid
+% näide???
+
+\section{Typeclasses as Subkinds}
+
+% Näite põhjal aga siis ka üldisemad reeglid
+
+\section{Beyond Haskell 98 -- multi-parameter}
+
+\section{Beyond Haskell 98 -- categoical view??}
+
+
+\bibliographystyle{splncs04}
+\bibliography{main}
+
 \end{document}
